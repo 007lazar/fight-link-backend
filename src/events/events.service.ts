@@ -1,6 +1,7 @@
 import { Injectable, Param } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 const events = [
   {
@@ -34,17 +35,19 @@ const events = [
 @Injectable()
 export class EventsService {
 
+  constructor(private prisma: PrismaService) { }
+
+
   create(createEventDto: CreateEventDto) {
     return 'This action adds a new event';
   }
 
   findAll() {
-    return events;
-
+    return this.prisma.event.findMany();
   }
 
-  findOne(id: string) {
-    const event = events.find((e) => e.id === id)
+  findOne(slug: string) {
+    const event = this.prisma.event.findUnique({where: {slug: slug}})
 
     if (event) {
       return event;

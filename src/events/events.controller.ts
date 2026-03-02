@@ -17,9 +17,9 @@ export class EventsController {
     return this.eventsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    const data = this.eventsService.findOne(id); 
+  @Get(':slug')
+  findOne(@Param('slug') slug: string) {
+    const data = this.eventsService.findOne(slug); 
     if(data)
       return data
     else
