@@ -26,13 +26,13 @@ export class EventsController {
       throw new NotFoundException("Event not found");
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
-    return this.eventsService.update(id, updateEventDto);
+  @Patch(':slug')
+  update(@Param('slug') slug: string, @Body() updateEventDto: UpdateEventDto) {
+    return this.eventsService.update(slug, updateEventDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.eventsService.remove(id);
+  @Delete(':slug')
+  remove(@Param('slug') slug: string) {
+    return this.eventsService.remove(slug);
   }
 }

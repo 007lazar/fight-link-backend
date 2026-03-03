@@ -1,1 +1,8 @@
-export class CreateEventDto {}
+export class CreateEventDto {
+  slug: string;
+  title: string;
+  discipline: string;
+  city: string;
+  date: string;
+  poster: string;
+}

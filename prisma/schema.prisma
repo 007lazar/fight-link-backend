@@ -10,7 +10,8 @@ datasource db {
 }
 
 model Event {
-  id         String   @id @default(uuid())
+  id String @id @default(uuid())
+
   slug       String   @unique
   title      String
   discipline String
@@ -23,10 +24,13 @@ model Event {
 }
 
 model Gym {
-  id          String   @id @default(uuid())
+  id String @id @default(uuid())
+
   slug        String   @unique
   name        String
   description String
   poster      String
   badges      String[] @default([])
+
+  createdAt DateTime @default(now())
 }

@@ -1,5 +1,7 @@
 export class CreateGymDto {
-    id: string;
-    name: string;
-    category: string;
+  slug: string;
+  name: string;
+  description: string;
+  poster: string;
+  badges: string[];
 }
