@@ -16,17 +16,28 @@ export class EventsService {
   }
 
   findAll() {
-    return this.prisma.event.findMany();
+    return this.prisma.event.findMany({
+      omit: {
+        id: true
+      }
+    });
   }
 
   findOne(slug: string) {
-    const event = this.prisma.event.findUnique({where: {slug: slug}})
+    const event = this.prisma.event.findUnique({
+      where: {slug: slug},
+      select: {
+        slug: true,
+        title: true, 
+        discipline: true,
+        city: true,
+        date: true,
+        poster: true,
+        createdAt: true
+      }
+    })
 
-    if (event) {
-      return event;
-    } else {
-      return undefined;
-    }
+    return event;
   }
 
   update(id: string, updateEventDto: UpdateEventDto) {
